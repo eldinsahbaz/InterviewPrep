@@ -7,6 +7,52 @@ import java.util.Stack;
 
 public class BagOfInterviewCakeProblems
 {
+	public class Meeting
+	{
+		int startTime;
+		int endTime;
+	
+    		public Meeting(int startTime, int endTime) {
+        	// number of 30 min blocks past 9:00 am
+        	this.startTime = startTime;
+        	this.endTime   = endTime;
+    		}
+
+    		public String toString() { return String.format("(%d, %d)", startTime, endTime); }
+	
+		public static Meeting[] condenseMeetingTimes(Meeting[] meetings)
+		{
+			ArrayList<Meeting> ALMeetings = new ArrayList<Meeting>(Arrays.asList(meetings));
+			Comparator<Meeting> comparator = new Comparator<Meeting>()
+			{ public int compare(Meeting A, Meeting B) { return ((Integer)A.startTime).compareTo((Integer)B.startTime); }};
+		
+			Collections.sort(ALMeetings, comparator);
+			Meeting previous = meetings[0];
+			ArrayList<Meeting> merged = new ArrayList<>();
+			int i = 0;
+		
+			while(i < ALMeetings.size())
+			{
+				if(previous.startTime == ALMeetings.get(i).startTime || previous.endTime >= ALMeetings.get(i).startTime)
+				{	
+					if(previous.endTime < ALMeetings.get(i).endTime)
+						previous = new Meeting(previous.startTime, ALMeetings.get(i).endTime);
+				}
+				else
+				{
+					merged.add(previous);
+					previous = ALMeetings.get(i);
+				}
+			
+				i++;
+			
+				if(i == ALMeetings.size())
+					merged.add(previous);
+			}
+		
+			return merged.toArray(new Meeting[merged.size()]);
+		}
+	}
 	
 	public class MyQueue<T>
 	{
@@ -122,6 +168,58 @@ public class BagOfInterviewCakeProblems
 		
 			return null;
 		}
+	}
+	
+	public String longestSubString(String str)
+	{
+		boolean[] seen = new boolean[256];
+		StringBuilder sb = new StringBuilder();
+		String longest = "";
+		
+		for(int i = 0; i < str.length(); i++)
+		{
+			if(seen[str.charAt(i)])
+			{
+				if(sb.length() > longest.length())
+					longest = sb.toString();
+				
+				sb = new StringBuilder();
+				sb.append(str.charAt(i));
+				seen = new boolean[256];
+			}
+			else
+				sb.append(str.charAt(i));
+			
+			seen[str.charAt(i)] = true;
+		}
+	
+		return longest;
+	}
+
+	public int longestSubStringLength(String str)
+	{
+		boolean[] seen = new boolean[256];
+		StringBuilder sb = new StringBuilder();
+		int longest = 0;
+		
+		for(int i = 0; i < str.length(); i++)
+		{
+			if(seen[str.charAt(i)])
+			{
+				if(sb.length() > longest)
+					longest = sb.length();
+				
+				sb = new StringBuilder();
+				sb.append(str.charAt(i));
+				seen = new boolean[256];
+			}
+			else
+				sb.append(str.charAt(i));
+				
+			seen[str.charAt(i)] = true;
+		}
+	
+		return longest;
 	}
 	
 	public String reverseString(String str) { return reverseString(str.toCharArray()); }
