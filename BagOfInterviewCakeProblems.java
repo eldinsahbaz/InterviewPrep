@@ -58,6 +58,8 @@ public class BagOfInterviewCakeProblems
 		}
 	}
 	
+	//---------------------------------------------------------------------------------------------------------------------
+	
 	public class MyQueue<T>
 	{
 		Stack<T> inStack;
@@ -89,6 +91,8 @@ public class BagOfInterviewCakeProblems
 			return inStack.peek();
 		}
 	}
+	
+	//---------------------------------------------------------------------------------------------------------------------
 	
 	public class MaxStack extends java.util.Stack<Integer>
 	{
@@ -126,6 +130,8 @@ public class BagOfInterviewCakeProblems
 		
 		public Integer getMax() { return MaxStack.peek(); };
 	}
+	
+	//---------------------------------------------------------------------------------------------------------------------
 	
 	public class IDProblem
 	{
@@ -174,14 +180,16 @@ public class BagOfInterviewCakeProblems
 		}
 	}
 	
+	//---------------------------------------------------------------------------------------------------------------------
+	
 	static int ways = 0;
-	public static int combinations(int amount, int[] denoms)
+	public static int moneyCombinations(int amount, int[] denoms)
 	{
 		int start = 0;
-		return combinations(amount, denoms, start);
+		return moneyCombinations(amount, denoms, start);
 	}
 	
-	public static int combinations(int amount, int[] denoms, int start)
+	public static int moneyCombinations(int amount, int[] denoms, int start)
 	{
 		if(amount == 0)
 			ways++;
@@ -189,7 +197,7 @@ public class BagOfInterviewCakeProblems
 			;
 		else
 			for(int i = start; i < denoms.length; i++)
-				combinations(amount - denoms[i], denoms, i);
+				moneyCombinations(amount - denoms[i], denoms, i);
 		
 		return ways;
 	}
