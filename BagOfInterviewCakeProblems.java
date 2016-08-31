@@ -174,6 +174,28 @@ public class BagOfInterviewCakeProblems
 		}
 	}
 	
+	static int ways = 0;
+	public static int combinations(int amount, int[] denoms)
+	{
+		int start = 0;
+		return combinations(amount, denoms, start);
+	}
+	
+	public static int combinations(int amount, int[] denoms, int start)
+	{
+		if(amount == 0)
+			ways++;
+		else if(amount < 0)
+			;
+		else
+			for(int i = start; i < denoms.length; i++)
+				combinations(amount - denoms[i], denoms, i);
+		
+		return ways;
+	}
+	
+	//---------------------------------------------------------------------------------------------------------------------
+	
 	public String longestSubString(String str)
 	{
 		boolean[] seen = new boolean[256];
@@ -226,6 +248,8 @@ public class BagOfInterviewCakeProblems
 		return longest;
 	}
 	
+	//---------------------------------------------------------------------------------------------------------------------
+	
 	public String reverseString(String str) { return reverseString(str.toCharArray()); }
 	
 	public String reverseString(char[] string)
@@ -255,6 +279,8 @@ public class BagOfInterviewCakeProblems
 		return String.valueOf(string);
 	}
 	
+	//---------------------------------------------------------------------------------------------------------------------
+	
 	public String reverseWords(String str) { return reverseWords(str.toCharArray()); }
 	
 	public String reverseWords(char[] string)
@@ -278,6 +304,8 @@ public class BagOfInterviewCakeProblems
 		return String.valueOf(reverseString(string));
 	}
 	
+	//---------------------------------------------------------------------------------------------------------------------
+	
 	public int parenthesis(String str, int position)
 	{
 		Stack<Character> characters = new Stack<>();
@@ -300,6 +328,8 @@ public class BagOfInterviewCakeProblems
 		
 		return -1;
 	}
+	
+	//---------------------------------------------------------------------------------------------------------------------
 	
 	public boolean validator(String str)
 	{
@@ -346,6 +376,8 @@ public class BagOfInterviewCakeProblems
 		return false;
 	}
 	
+	//---------------------------------------------------------------------------------------------------------------------
+	
 	public boolean isPalindrome(String str)
 	{
 		HashSet<Character> characters = new HashSet<>();
@@ -360,6 +392,8 @@ public class BagOfInterviewCakeProblems
 		
 		return (characters.size() > 1);
 	}
+	
+	//---------------------------------------------------------------------------------------------------------------------
 	
 	public Set<String> permutations(String str)
 	{
@@ -378,6 +412,8 @@ public class BagOfInterviewCakeProblems
 		return set;
 	}
 	
+	//---------------------------------------------------------------------------------------------------------------------
+	
 	public Set<String> combinations(String str)
 	{
 		Set<String> combs = new Set<>();
@@ -393,6 +429,8 @@ public class BagOfInterviewCakeProblems
 			
 		return set;
 	}
+	
+	//---------------------------------------------------------------------------------------------------------------------
 	
 	public Integer duplicate(int[] numbers)
 	{
@@ -413,6 +451,8 @@ public class BagOfInterviewCakeProblems
 		return null;
 	}
 	
+	//---------------------------------------------------------------------------------------------------------------------
+	
 	public Map<String, Integer> infographic(String str)
 	{
 		str = str.toLowerCase();
@@ -428,6 +468,8 @@ public class BagOfInterviewCakeProblems
 		return infographic;
 	}
 	
+	//---------------------------------------------------------------------------------------------------------------------
+	
 	public void shuffle(int[] numbers)
 	{
 		for(int i = 0; i < numbers.length; i++)
@@ -439,6 +481,8 @@ public class BagOfInterviewCakeProblems
 			numbers[i] = temp;
 		}
 	}
+	
+	//---------------------------------------------------------------------------------------------------------------------
 	
 	public int findRotatedIndex(String[] dictionary)
 	{
@@ -462,6 +506,8 @@ public class BagOfInterviewCakeProblems
 	
 		return rotatedIndex;
 	}
+	
+	//---------------------------------------------------------------------------------------------------------------------
 
 	public boolean Moviesum(int duration, int[] movieLengths)
 	{
@@ -497,6 +543,8 @@ public class BagOfInterviewCakeProblems
 		
 		return false;
 	}
+	
+	//---------------------------------------------------------------------------------------------------------------------
 
 	public int fib(int n)
 	{
@@ -505,6 +553,8 @@ public class BagOfInterviewCakeProblems
 			
 		return fib(n-1) + fib(n-2)
 	}
+	
+	//---------------------------------------------------------------------------------------------------------------------
 	
 	public Stack<Integer> sortStack(Stack<Integer> stack)
 	{
