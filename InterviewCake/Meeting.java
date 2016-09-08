@@ -53,4 +53,4 @@ public class Meeting
 		
 			return merged.toArray(new Meeting[merged.size()]);
 		}
-	}
+}
