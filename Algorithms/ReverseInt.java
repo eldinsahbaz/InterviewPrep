@@ -1,3 +1,7 @@
+/*
+Reverse an int passed to the function.
+*/
+
 public class ReverseInt
 {
   public int reverse(int x)
