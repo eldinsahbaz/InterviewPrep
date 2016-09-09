@@ -17,7 +17,7 @@ by calculating:
 Do not use division in your solution.
 */
 
-public class Products
+public class ProductOfOtherNumbers
 {
   public int[] getProductsOfAllIntsExceptAtIndex(int[] list)
   {
