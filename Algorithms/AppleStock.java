@@ -10,5 +10,22 @@ Write an efficient function that takes stock_prices_yesterday and returns the be
 
 public class AppleStock
 {
+  public int getMaxProfit(int[] Stocks)
+  {
+        int leftPtr = 0;
+        int rightPtr = Stocks.length - 1;
+        int leftStock = Integer.MAX_VALUE;
+        int rightStock = Integer.MIN_VALUE;
 
+        while(leftPtr < rightPtr)
+        {
+                if(Stocks[leftPtr] < leftStock) leftStock = Stocks[leftPtr];
+                if(Stocks[rightPtr] > rightStock) rightStock = Stocks[rightPtr];
+
+                rightPtr--;
+                leftPtr++;
+        }
+
+        return (rightStock - leftStock);
+  }
 }
