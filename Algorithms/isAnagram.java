@@ -12,6 +12,9 @@ public class isAnagram
 {
   public static boolean isAnagram(String s, String t)
   {
+    	if(s == t) return true;
+    	if((s == null) ^ (t == null)) return false;
+    	
         char[] String1 = s.toLowerCase().toCharArray();
         char[] String2 = t.toLowerCase().toCharArray();
         
