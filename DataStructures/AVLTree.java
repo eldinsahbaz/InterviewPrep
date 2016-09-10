@@ -419,6 +419,21 @@ public class AVLTree
 			
 			return gca;
 		}
+		
+		public Node invert(Node root)
+		{
+			if(root != null)
+			{
+				Node temp = root.left;
+				root.left = root.right;
+				root.right = temp;
+				
+				invert(root.left);
+				invert(root.right);
+			}
+			
+			return root;
+		}
 	}
 	
 	private Node root;
@@ -499,5 +514,13 @@ public class AVLTree
 			node = this.root.search(value, this.root);
 		
 		return (this.root != null) ? (!(this.root.balanceFactor(node) > 1) || !(this.root.balanceFactor(node) < 1)) : false;
+	}
+	
+	public Node invert(Node root)
+	{
+		if(root != null)
+			root.invert(root);
+		
+		return root;
 	}
 }
