@@ -28,4 +28,23 @@ public class AppleStock
 
         return (rightStock - leftStock);
   }
+  
+  public int getMaxProfitAlternate(int[] Stocks)
+  {
+      if(Stocks == null || Stocks.length < 2) return 0;
+        
+      int[] profits = new int[Stocks.length];
+      int min = Stocks[0];
+      profits[0] = 0;
+      int i = 1;
+        
+      while(i < profits.length)
+      {
+          min = (min > Stocks[i]) ? Stocks[i] : min;
+          profits[i] = ((Stocks[i] - min) > profits[i - 1]) ? (Stocks[i] - min) : profits[i - 1];
+          i++;
+      }
+            
+      return profits[Stocks.length - 1];
+  }
 }
