@@ -9,93 +9,43 @@ You may not engage in multiple transactions at the same time (ie, you must sell 
 
 public class MaxProfitIII
 {
-  public static int maxProfit(int[] Stocks)
+  public static int maxProfit(int[] stocks)
   {
-    	//single transaction
-        int leftPtr = 0;
-        int rightPtr = Stocks.length - 1;
-        int leftStock = Integer.MAX_VALUE;
-        int rightStock = Integer.MIN_VALUE;
-        int leftStockIndex = 0;
-        int rightStockIndex = 0;
-
-        while(leftPtr < rightPtr)
+        if(stocks == null || stocks.length < 2) return 0;
+        
+        int[] firstPass = new int[stocks.length];
+        int[] secondPass = new int[stocks.length];
+        
+        int i = 1;
+        int min = stocks[0];
+        int max = stocks[stocks.length - 1];
+        int maxProfit = 0;
+        
+        firstPass[0] = 0;
+        secondPass[stocks.length - 1] = 0;
+        
+        while(i < firstPass.length)
         {
-                if(Stocks[leftPtr] < leftStock)
-                {
-                    leftStock = Stocks[leftPtr];
-                    leftStockIndex = leftPtr;
-                }
-                if(Stocks[rightPtr] > rightStock)
-                {
-                    rightStock = Stocks[rightPtr];
-                    rightStockIndex = rightPtr;
-                }
-
-                rightPtr--;
-                leftPtr++;
-        }
-
-        int oneTransaction = (rightStock - leftStock);
-        int twoTransactions = 0;
-        
-        //two transactions
-        
-        //left of min
-        
-        leftPtr = 0;
-        rightPtr = leftStockIndex;
-        int leftStockTwo = Integer.MAX_VALUE;
-        int rightStockTwo = Integer.MIN_VALUE;
-
-        while(leftPtr < rightPtr)
-        {
-                if(Stocks[leftPtr] < leftStockTwo) leftStockTwo = Stocks[leftPtr];
-                if(Stocks[rightPtr] > rightStockTwo) rightStockTwo = Stocks[rightPtr];
-
-                rightPtr--;
-                leftPtr++;
+            min = (min > stocks[i]) ? stocks[i] : min;
+            firstPass[i] = ((stocks[i] - min) > firstPass[i - 1]) ? (stocks[i] - min) : firstPass[i - 1];
+            i++;
         }
         
-        twoTransactions = (rightStockTwo - leftStockTwo) + oneTransaction;
-        
-        //between min and max
-        
-        leftPtr = leftStockIndex;
-        rightPtr = rightStockIndex;
-        leftStockTwo = Integer.MIN_VALUE;
-        rightStockTwo = Integer.MAX_VALUE;
-
-        while(leftPtr < rightPtr)
+        i = secondPass.length - 2;
+        while(i >= 0)
         {
-                if(Stocks[leftPtr] > leftStockTwo) leftStockTwo = Stocks[leftPtr];
-                if(Stocks[rightPtr] < rightStockTwo) rightStockTwo = Stocks[rightPtr];
-
-                rightPtr--;
-                leftPtr++;
-        }
-        if(((leftStockTwo - leftStock) + (rightStock - rightStockTwo)) > twoTransactions)
-        	twoTransactions = (leftStockTwo - leftStock) + (rightStock - rightStockTwo);
-        
-        //right of max
-        
-        leftPtr = rightStockIndex;
-        rightPtr = Stocks.length - 1;
-        leftStockTwo = Integer.MAX_VALUE;
-        rightStockTwo = Integer.MIN_VALUE;
-
-        while(leftPtr < rightPtr)
-        {
-                if(Stocks[leftPtr] < leftStockTwo) leftStockTwo = Stocks[leftPtr];
-                if(Stocks[rightPtr] > rightStockTwo) rightStockTwo = Stocks[rightPtr];
-
-                rightPtr--;
-                leftPtr++;
+            max = (max < stocks[i]) ? stocks[i] : max;
+            secondPass[i] = ((max - stocks[i]) > secondPass[i + 1]) ? (max - stocks[i]) : secondPass[i + 1];
+            i--;
         }
         
-        if(((rightStockTwo - leftStockTwo) + oneTransaction) > twoTransactions)
-        	twoTransactions = (rightStockTwo - leftStockTwo) + oneTransaction;
-        
-        return (oneTransaction > twoTransactions) ? oneTransaction : twoTransactions;
+        i = 0;
+        while(i < stocks.length)
+        {
+            maxProfit = (maxProfit > (firstPass[i] + secondPass[i])) ? maxProfit : (firstPass[i] + secondPass[i]);
+            i++;
+        }
+            
+        return maxProfit;
   }
 }
