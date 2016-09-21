@@ -18,13 +18,13 @@ Example: for amount=4 (4¢) and denominations=[1,2,3] (1¢, 2¢ and 3¢), your p
 public class MakingChange
 {
   static int ways = 0;
-	public static int moneyCombinations(int amount, int[] denoms)
+	public int moneyCombinations(int amount, int[] denoms)
 	{
 		int start = 0;
 		return moneyCombinations(amount, denoms, start);
 	}
 	
-	public static int moneyCombinations(int amount, int[] denoms, int start)
+	public int moneyCombinations(int amount, int[] denoms, int start)
 	{
 		if(amount == 0)
 			ways++;
