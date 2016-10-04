@@ -63,7 +63,7 @@ public class numToWord
 		else if(number >= 20)
 			return tens.get(number - number%10) + " " + ((convert(number%10, ones, teens, tens).intern() == "zero") ? "" : convert(number%10, ones, teens, tens));
 		else if(number >= 10)
-			return teens.get(number) + " ";
+			return teens.get(number);
 		else
 			return ones[number];
 	}
