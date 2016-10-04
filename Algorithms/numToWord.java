@@ -20,7 +20,7 @@ public class numToWord
 		tens.put(60, "sixty");
 		tens.put(70, "seventy");
 		tens.put(80, "eighty");
-		tens.put(90, "ninty");
+		tens.put(90, "ninety");
 
 		String[] ones = {"zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"};
 
