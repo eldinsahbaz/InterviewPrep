@@ -29,7 +29,6 @@ public class isAnagram
     //efficient
   	public static boolean isAnagramAlternate(String one, String two)
 	  {
-
 		  one = one.toLowerCase();
 		  two = two.toLowerCase();
 		  Map<Character, Integer> chars = new HashMap<>();
