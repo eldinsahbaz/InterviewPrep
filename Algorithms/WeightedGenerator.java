@@ -3,7 +3,7 @@ import java.util.Random;
 
 class WeightedGenerator
 {
-  public static int generate(int[] weights)
+  public int generate(int[] weights)
   {
    int sum = 0;
    for(int i : weights)
