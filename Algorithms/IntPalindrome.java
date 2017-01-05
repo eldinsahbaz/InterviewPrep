@@ -18,6 +18,6 @@ public class IntPalindrome
            x /= 10;
         }
         
-        return (rebuild == backUp) ? true : false;
+        return (rebuild == backUp);
     }
 }
